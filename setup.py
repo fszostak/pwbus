@@ -9,7 +9,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="pwbus",
-    version="0.0.30",
+    version="0.0.31",
     author="Fabio Szostak",
     author_email="fszostak@gmail.com",
     description="An integration bus capable of performing message transformation and managing task execution. Message exchange between plataforms, like HTTP, Redis, RabbitMQ, Apache Kafta, AWS SQS, MongoDB.",
