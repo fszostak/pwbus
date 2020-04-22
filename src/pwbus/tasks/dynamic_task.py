@@ -1,0 +1,51 @@
+# PWBus - DynamicTask Class
+#:
+#:  maintainer: fabio.szostak@perfweb.com.br | Mon Nov 18 09:30:57 -03 2019
+
+import importlib
+import os.path
+import traceback
+
+from pwbus.commons.logging import *
+
+# DynamicTask
+#
+#
+
+
+class DynamicTask():
+
+    def __init__(self, task_id, payload, isDebugEnabled=False):
+        try:
+            task_name = task_id.split('.')
+            module_name = f'pwbus_tasks.{task_name[0]}.{task_name[1]}'
+            class_name = task_name[1].capitalize()
+        except:
+            log_debug(
+                f'🟥 DynamicTask - Invalid task_id [{task_id}] specify "module.class" (lowercase)')
+            return
+
+        try:
+            module = importlib.import_module(module_name)
+            class_ = getattr(module, class_name)
+            self.instance = class_(payload)
+
+            if isDebugEnabled:
+                log_debug(
+                    f'DynamicTask - Module [{module_name}] Class [{class_name}] instance created')
+
+        except:
+            log_debug(
+                f'⚠️ DynamicTask - WARNING!!! Class not found or with errors for task_id [{task_id}]')
+            traceback.print_exc()
+            raise
+
+    # DynamicTask.getInstance
+    #
+    def getInstance(self):
+        return self.instance
+
+    # DynamicTask.isLoaded
+    #
+    def isLoaded(self):
+        return True if self.instance else False
