@@ -9,7 +9,7 @@ An integration bus capable of performing message transformation and managing tas
 - Asynchronous communication
 - Ready conectors
 
-[Github](https://github.com/fszostak/pwbus)
+See source code in [Github](https://github.com/fszostak/pwbus)
 
 Install:
 

@@ -4,8 +4,8 @@
 #:
 #:  maintainer: fabio.szostak@perfweb.com.br | Tue Nov 19 11:17:54 -03 2019
 
-__author__ = 'fabio.szostak@perfweb.com.br'
-__vesion__ = '0.0.17'
+__author__ = "fabio.szostak@perfweb.com.br"
+__vesion__ = "0.0.32"
 
 import sys
 import os.path
@@ -24,10 +24,10 @@ def main():
     command = None
     registry_file = None
 
-    help_message = '\npwbus -f <registry-file> [-e <engine>] [-c <channel>] start\n\n      -f  <registry-file>\n      --registry=<registry-config-file>\n      -e <redis|socket>\n      ----engine=<redis|socket>\n\n      -c <channel_id>\n      --channel=channel_id\n\n      start the pwbus server\n'
+    help_message = '\npwbus -f <registry-file> [-v] [-e <engine>] [-c <channel>] start\n\n      -v  version\n      -f  <registry-file>\n      --registry=<registry-config-file>\n      -e <redis|socket>\n      ----engine=<redis|socket>\n\n      -c <channel_id>\n      --channel=channel_id\n\n      start the pwbus server\n'
 
     try:
-        opts, args = getopt.getopt(argv, "he:c:f:", ["start|registry=|channel=|engine="])
+        opts, args = getopt.getopt(argv, "hve:c:f:", ["start|registry=|channel=|engine="])
     except getopt.GetoptError:
         print(help_message)
         sys.exit(2)
@@ -39,6 +39,9 @@ def main():
     for opt, arg in opts:
         if opt == '-h':
             print(help_message)
+            sys.exit()
+        elif opt == '-v':
+            print(__version__);
             sys.exit()
         elif opt in ("-e", "--engine"):
             engine = arg
