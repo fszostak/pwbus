@@ -23,6 +23,7 @@ class DynamicTask():
         except:
             log_debug(
                 f'🟥 DynamicTask - Invalid task_id [{task_id}] specify "module.class" (lowercase)')
+            payload['errorOnTask'] = f'Invalid task_id [{task_id}]'
             return
 
         try:
@@ -35,8 +36,11 @@ class DynamicTask():
                     f'DynamicTask - Module [{module_name}] Class [{class_name}] instance created')
 
         except:
+            formatted_lines = traceback.format_exc().splitlines()
             log_debug(
-                f'⚠️ DynamicTask - WARNING!!! Class not found or with errors for task_id [{task_id}]')
+                f'⚠️ DynamicTask - WARNING!!! Cannot instatiate class -  task_id [{task_id}] - Message: {formatted_lines[-1]}')
+            payload['errorOnTask'] = formatted_lines[-1]
+
             traceback.print_exc()
             raise
 
