@@ -38,7 +38,7 @@ class DynamicTask():
         except:
             formatted_lines = traceback.format_exc().splitlines()
             log_debug(
-                f'⚠️ DynamicTask - WARNING!!! Cannot instatiate class -  task_id [{task_id}] - Message: {formatted_lines[-1]}')
+                f'⚠️ DynamicTask - WARNING!!! Cannot instatiate class -  task_id [{task_id}] - Message: {formatted_lines[-2]} | {formatted_lines[-1]}')
             payload['errorOnTask'] = formatted_lines[-1]
 
             traceback.print_exc()

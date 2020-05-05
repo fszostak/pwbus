@@ -9,7 +9,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="pwbus",
-    version="0.1.1",
+    version="0.1.12",
     author="Fabio Szostak",
     author_email="fszostak@gmail.com",
     description="An integration bus capable of performing message transformation and managing task execution. Message exchange between plataforms, like HTTP, Redis, RabbitMQ, Apache Kafta, AWS SQS, MongoDB.",
@@ -24,7 +24,7 @@ setup(
     install_requires=requirements,
     setup_requires=['flake8'],
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "License :: OSI Approved :: MIT License",
