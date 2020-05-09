@@ -7,9 +7,8 @@ An integration bus capable of performing message transformation and managing tas
 - Message transformation
 - Task execution management
 - Asynchronous communication
-- Ready conectors
+- Connectors
 
-See source code in [Github](https://github.com/fszostak/pwbus)
 
 Install:
 
