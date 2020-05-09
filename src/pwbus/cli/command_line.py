@@ -5,14 +5,12 @@
 #:  maintainer: fabio.szostak@perfweb.com.br | Tue Nov 19 11:17:54 -03 2019
 
 __author__ = "fabio.szostak@perfweb.com.br"
-__vesion__ = "0.0.32"
+__version__ = "0.1.13"
 
 import sys
 import os.path
 import getopt
-import traceback
 
-from pwbus.commons.logging import log_exit
 from pwbus.engines.engine_manager import EngineManager
 
 
@@ -24,7 +22,7 @@ def main():
     command = None
     registry_file = None
 
-    help_message = '\npwbus -f <registry-file> [-v] [-e <engine>] [-c <channel>] start\n\n      -v  version\n      -f  <registry-file>\n      --registry=<registry-config-file>\n      -e <redis|socket>\n      ----engine=<redis|socket>\n\n      -c <channel_id>\n      --channel=channel_id\n\n      start the pwbus server\n'
+    help_message = f'\npwbus -f <registry-file> [-v] [-e <engine>] [-c <channel>] start\n\nPWBUS Core - Version {__version__}\n\n      -v  version\n      -f  <registry-file>\n      --registry=<registry-config-file>\n      -e <redis|socket>\n      ----engine=<redis|socket>\n\n      -c <channel_id>\n      --channel=channel_id\n\n      start the pwbus server\n'
 
     try:
         opts, args = getopt.getopt(argv, "hve:c:f:", ["start|registry=|channel=|engine="])
@@ -41,7 +39,7 @@ def main():
             print(help_message)
             sys.exit()
         elif opt == '-v':
-            print(__version__);
+            print(__version__)
             sys.exit()
         elif opt in ("-e", "--engine"):
             engine = arg

@@ -23,7 +23,7 @@ class RedisFlowIn(FlowIn):
 
     # RedisFlowIn.receive
     #
-    def receive(self, timeout=120):
+    def receive(self, timeout=300):
         DEBUG = self.isDebugEnabled()
         resource_name = self.getRecvFrom()
 

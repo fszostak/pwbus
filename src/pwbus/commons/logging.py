@@ -45,7 +45,7 @@ def print_datetime(arg1, arg2=''):
             print(f'{arg1} {arg2}')
         else:
             cprint(arg1, color='bright_white')
-            cprint(f' {arg2}', color=debug_color)
+            cprint_rainbow(f' {arg2}', key=this_thread[0:10])
             print()
     except:
         cprint(arg1, color='bright_white')

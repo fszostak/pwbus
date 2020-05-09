@@ -44,6 +44,38 @@ fcolors = {
     "bright_white":   u'\u001b[37m\u001b[1m',
 }
 
+thread_colors = [
+    "green",
+    "yellow",
+    "cyan",
+    "bright_white",
+    "bright_green",
+    "bright_cyan",
+    "bright_magenta",
+    "bright_blue",
+    "blue",
+    "magenta",
+    "white"
+]
+
+thread_list = dict()
+
 
 def cprint(data, color='yellow', bcolor='black', enable=COLORS):
     print(f"{bcolors[bcolor]}{fcolors[color]}{data}{fcolors['reset']}" if enable else data, end='')
+
+
+def cprint_rainbow(data, key='thread', bcolor='black', enable=COLORS):
+    global thread_list
+    global thread_colors
+
+    fcolor = thread_list[key] if key in thread_list else None
+    if not fcolor:
+        count = len(thread_list.keys())
+        if count < 11:
+            fcolor = thread_colors[count]
+        else:
+            fcolor = 'white'
+        thread_list[key] = fcolor
+
+    print(f"{bcolors[bcolor]}{fcolors[fcolor]}{data}{fcolors['reset']}" if enable else data, end='')

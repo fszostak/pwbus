@@ -7,7 +7,7 @@ trap abort INT
 abort()
 {
     sed -i "s/version=\"$NEW_VERSION\"/version=\"$VERSION\"/" setup.py
-    sed -i "s/__vesion__ = \"$NEW_VERSION\"/__vesion__ = \"$VERSION\"/" src/pwbus/cli/command_line.py
+    sed -i "s/__version__ = \"$NEW_VERSION\"/__version__ = \"$VERSION\"/" src/pwbus/cli/command_line.py
     echo "Aborted!!! Version reverted to $VERSION"
     exit
 }
