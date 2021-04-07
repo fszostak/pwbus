@@ -9,7 +9,7 @@ docutils==0.17
 halo==0.0.31
 idna==2.10
 jmespath==0.10
-kazoo==2.8.0
+kazoo==2.5.0
 log-symbols==0.0.14
 pika==1.2.0
 pykafka==2.8.0
