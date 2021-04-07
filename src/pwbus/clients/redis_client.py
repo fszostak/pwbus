@@ -23,7 +23,7 @@ class RedisClient(RedisConnector, Client):
 
     # RedisClient.get
     #
-    def get(self, resource_name, correlation_id, wait=0.05, retries=20):
+    def get(self, resource_name, correlation_id, wait=0.05, retries=5):
         log_debug(
             f'🔎 RedisClient.get - Retrieving response from [{resource_name}] with correlation_id [{correlation_id}] wait={wait}ms retries={retries}')
         try:
@@ -37,11 +37,7 @@ class RedisClient(RedisConnector, Client):
 
                     for scan_result in connection.sscan_iter(name=resource_name, match=f'*Pwbus-Correlation-Id*{correlation_id}*'):
                         response = scan_result.decode("utf-8")
-                        log_debug(
-                            f'🔎 RedisClient.get - Retrieve message from queue [{resource_name}]')
                         connection.srem(resource_name, response)
-                        log_debug(
-                            f'🔎 RedisClient.get - Put helper message for queue [{resource_name}]')
                         connection.rpop(
                             f'{resource_name}_helper'
                         )
