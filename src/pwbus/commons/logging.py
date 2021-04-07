@@ -8,7 +8,7 @@ from threading import current_thread
 from os import environ
 
 from pwbus.engines.engine_monitor_event import EngineMonitorEvent
-from pwbus.commons.cprint import cprint
+from pwbus.commons.cprint import cprint, cprint_rainbow
 from sys import stdout, exit
 import random
 
@@ -38,9 +38,8 @@ def print_datetime(arg1, arg2=''):
         date_time = now
         print(this_thread, now, '|-------------------------------------------------------------------')
 
-    print(f'{this_thread[0:10]} {now[10:]} ', end='')
-
     try:
+        print(f'{this_thread[0:10]} {now[10:]} ', end='')
         if environ['ENVIRONMENT'] == 'production':
             print(f'{arg1} {arg2}')
         else:
@@ -48,6 +47,7 @@ def print_datetime(arg1, arg2=''):
             cprint_rainbow(f' {arg2}', key=this_thread[0:10])
             print()
     except:
+        cprint(f'{this_thread[0:10]} {now[10:]} ', color='bright_black')
         cprint(arg1, color='bright_white')
         cprint(f' {arg2}', color=debug_color)
         print()

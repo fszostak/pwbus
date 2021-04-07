@@ -45,17 +45,17 @@ fcolors = {
 }
 
 thread_colors = [
+    "white",
     "green",
-    "yellow",
     "cyan",
-    "bright_white",
-    "bright_green",
-    "bright_cyan",
-    "bright_magenta",
     "bright_blue",
+    "bright_green",
     "blue",
     "magenta",
-    "white"
+    "yellow",
+    "bright_green",
+    "bright_cyan",
+    "bright_magenta"
 ]
 
 thread_list = dict()
@@ -72,7 +72,7 @@ def cprint_rainbow(data, key='thread', bcolor='black', enable=COLORS):
     fcolor = thread_list[key] if key in thread_list else None
     if not fcolor:
         count = len(thread_list.keys())
-        if count < 11:
+        if count < 10:
             fcolor = thread_colors[count]
         else:
             fcolor = 'white'

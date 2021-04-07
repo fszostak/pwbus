@@ -30,11 +30,18 @@ class RedisClient(RedisConnector, Client):
             with self.getConnectionPool().item() as connection:
                 response = None
 
+                log_debug(
+                    f'🔎 RedisClient.get - Connection retrieved from pool for [{resource_name}]')
+
                 for retry in range(0, retries):
 
                     for scan_result in connection.sscan_iter(name=resource_name, match=f'*Pwbus-Correlation-Id*{correlation_id}*'):
                         response = scan_result.decode("utf-8")
+                        log_debug(
+                            f'🔎 RedisClient.get - Retrieve message from queue [{resource_name}]')
                         connection.srem(resource_name, response)
+                        log_debug(
+                            f'🔎 RedisClient.get - Put helper message for queue [{resource_name}]')
                         connection.rpop(
                             f'{resource_name}_helper'
                         )

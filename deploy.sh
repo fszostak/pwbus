@@ -27,10 +27,10 @@ echo "Press ENTER to continue or CTRL-C to abort"
 read ENTER
 
 echo "Installing..."
-pip install -r requirements.txt > /dev/null 2>&1
+pip3 install -r requirements.txt > /dev/null 2>&1
 [ $? -ne 0 ] && abort
 
-pip install -e . > /dev/null 2>&1
+pip3 install -e . > /dev/null 2>&1
 [ $? -ne 0 ] && abort
 
 echo "Building..."
@@ -46,5 +46,6 @@ fi
 echo
 
 if [ $RET -ne 0 ]; then
+		python3 -m pip install --user --upgrade twine
     abort
 fi
