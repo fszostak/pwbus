@@ -5,6 +5,7 @@
 import redis
 from json import dumps, loads, load
 from time import sleep
+from datetime import datetime
 import traceback
 
 from pwbus.commons.logging import *
@@ -23,7 +24,7 @@ class RedisClient(RedisConnector, Client):
 
     # RedisClient.get
     #
-    def get(self, resource_name, correlation_id, wait=0.05, retries=5):
+    def get(self, resource_name, correlation_id, wait=0.10, retries=3):
         log_debug(
             f'🔎 RedisClient.get - Retrieving response from [{resource_name}] with correlation_id [{correlation_id}] wait={wait}ms retries={retries}')
         try:
@@ -35,7 +36,10 @@ class RedisClient(RedisConnector, Client):
 
                 for retry in range(0, retries):
 
+                    start = datetime.now()
+
                     for scan_result in connection.sscan_iter(name=resource_name, match=f'*Pwbus-Correlation-Id*{correlation_id}*'):
+                        end = datetime.now()
                         response = scan_result.decode("utf-8")
                         connection.srem(resource_name, response)
                         connection.rpop(
@@ -43,8 +47,12 @@ class RedisClient(RedisConnector, Client):
                         )
                         response = loads(response)
                         log_debug(
-                            f'RedisClient.get - Response found - correlation_id [{correlation_id}] retry [{retry+1}] wait [{wait}]')
+                            f'RedisClient.get - Response found - correlation_id [{correlation_id}] retry [{retry+1}] wait [{wait}] scan-time [{end - start}ms]')
                         return self.clear_header(response)
+
+                    end = datetime.now()
+                    log_debug(
+                        f'RedisClient.get - Waiting message - correlation_id [{correlation_id}] retry [{retry+1}] wait [{wait}] scan-time [{end - start}ms]')
 
                     sleep(wait)
 
