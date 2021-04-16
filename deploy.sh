@@ -28,6 +28,7 @@ read ENTER
 
 echo "Installing..."
 pip3 install -r requirements.txt > /dev/null 2>&1
+pip3 install -r requirements.txt > /dev/null 2>&1
 [ $? -ne 0 ] && abort
 
 pip3 install -e . > /dev/null 2>&1

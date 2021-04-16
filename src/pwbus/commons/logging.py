@@ -17,6 +17,11 @@ LOG_ERROR = True
 date_time = None
 debug_color = 'green'
 
+# logging.set_debug
+#
+def set_debug(enabled):
+    global LOG_DEBUG
+    LOG_DEBUG = enabled
 
 # logging.set_debug_color
 #
