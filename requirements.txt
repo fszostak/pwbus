@@ -24,5 +24,5 @@ spinners==0.0.24
 tabulate==0.8.9
 termcolor==1.1.0
 urllib3==1.26.4
-websockets==8.1
+websockets==9.1
 requests==2.25.1
