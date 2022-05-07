@@ -23,6 +23,6 @@ six==1.15.0
 spinners==0.0.24
 tabulate==0.8.9
 termcolor==1.1.0
-urllib3==1.26.4
-websockets==8.1
+urllib3==1.26.9
+websockets==10.3
 requests==2.25.1
