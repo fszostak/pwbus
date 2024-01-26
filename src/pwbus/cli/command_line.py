@@ -2,10 +2,10 @@
 
 # PWBus - Main
 #:
-#:  maintainer: fabio.szostak@perfweb.com.br | Tue Nov 19 11:17:54 -03 2019
+#:  maintainer: fabio.szostak@gmail.com | Tue Nov 19 11:17:54 -03 2019
 
 __author__ = "fszostak@gmail.com"
-__version__ = "0.1.41"
+__version__ = "0.1.42"
 
 import sys
 import os.path
