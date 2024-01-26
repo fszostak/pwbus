@@ -4,8 +4,8 @@
 #:
 #:  maintainer: fabio.szostak@perfweb.com.br | Tue Nov 19 11:17:54 -03 2019
 
-__author__ = "fabio.szostak@perfweb.com.br"
-__version__ = "0.1.38"
+__author__ = "fszostak@gmail.com"
+__version__ = "0.1.40"
 
 import sys
 import os.path

@@ -23,7 +23,7 @@ class RedisFlowIn(FlowIn):
 
     # RedisFlowIn.receive
     #
-    def receive(self, timeout=300):
+    def receive(self, timeout=0.5):
         DEBUG = self.isDebugEnabled()
         resource_name = self.getRecvFrom()
 
@@ -45,10 +45,11 @@ class RedisFlowIn(FlowIn):
                         # for pseudosync tasks, with SADD, SPOP and SSCAN (client)
                         if self.isPseudoSyncInEnabled():
 
+                            if DEBUG:
+                                log_debug(
+                                    f'⏱️  RedisFlowIn.receive.message - Waiting for messages from [{resource_name}|PSEUDOSYNC] ...')
+
                             while True:
-                                if DEBUG:
-                                    log_debug(
-                                        f'⏱️  RedisFlowIn.receive.message - Waiting for messages from [{resource_name}|PSEUDOSYNC] ...')
 
                                 # pattern event notification - for SADD command
                                 # (https://redis.io/commands/blpop#pattern-e
