@@ -5,7 +5,7 @@
 #:  maintainer: fabio.szostak@perfweb.com.br | Tue Nov 19 11:17:54 -03 2019
 
 __author__ = "fszostak@gmail.com"
-__version__ = "0.1.40"
+__version__ = "0.1.41"
 
 import sys
 import os.path

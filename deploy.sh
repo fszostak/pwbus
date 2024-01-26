@@ -40,7 +40,7 @@ RET=$?
 
 echo "Deploying..."
 if [ $RET -eq 0 ]; then
-    python3 -m twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ dist/*
+    python3 -m twine upload dist/*
     RET=$?
 fi
 
