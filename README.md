@@ -22,6 +22,9 @@ Start the server:
 $ pwbus -f pwbus-registry.json start
 ```
 
+Note:
+Set "engine.production = false" to force reload task module always.
+
 Sample: pwbus-registry.json
 
 ```
@@ -35,6 +38,7 @@ Sample: pwbus-registry.json
 
 		"engine.enabled": true,
 		"engine.debug": true,
+		"engine.production": false,
 
 		"flow.in.resource_type": "http",
 		"flow.in.resource_name": "/app/v1/request",
