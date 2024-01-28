@@ -15,7 +15,7 @@ from pwbus.commons.logging import *
 
 class DynamicTask():
 
-    def __init__(self, task_id, payload, isDebugEnabled=False):
+    def __init__(self, task_id, payload, isDebugEnabled=False, isProductionMode=True):
         try:
             task_name = task_id.split('.')
             module_name = f'pwbus_tasks.{task_name[0]}.{task_name[1]}'
@@ -28,6 +28,8 @@ class DynamicTask():
 
         try:
             module = importlib.import_module(module_name)
+            if not isProductionMode:
+               module = importlib.reload(module) 
             class_ = getattr(module, class_name)
             self.instance = class_(payload)
 

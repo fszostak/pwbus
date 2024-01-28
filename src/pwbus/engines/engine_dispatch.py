@@ -27,10 +27,14 @@ class EngineDispatch():
                 return None
 
             DEBUG = channel_registry['engine.debug']
+            try:
+                PRODUCTION = channel_registry['engine.production']
+            except:
+                PRODUCTION = True
 
             if DEBUG:
                 log_debug(
-                    f'EngineDispatch.route - Message dispatch started for [{channel_registry["channel"]}]')
+                    f'EngineDispatch.route - Message dispatch started for [{channel_registry["channel"]}] in {"production" if PRODUCTION else "development"} mode')
 
             # @@@ step 1 - retrieve message in
 
@@ -87,11 +91,11 @@ class EngineDispatch():
                     try:
                         for task_id in field_task_id.split(','):
                             task = DynamicTask(
-                                task_id, transformed_payload, DEBUG)
+                                task_id, transformed_payload, DEBUG, PRODUCTION)
                             task.getInstance().execute()
                     except:
                         EngineMonitorEvent().incrValue("pwbus_task_errors")
-                        pass
+                        passode=DEVELOP_MODE
 
             # @@@ step 3 - send message out
 

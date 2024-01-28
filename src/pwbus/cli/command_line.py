@@ -5,7 +5,7 @@
 #:  maintainer: fabio.szostak@gmail.com | Tue Nov 19 11:17:54 -03 2019
 
 __author__ = "fszostak@gmail.com"
-__version__ = "0.1.42"
+__version__ = "0.1.63"
 
 import sys
 import os.path
