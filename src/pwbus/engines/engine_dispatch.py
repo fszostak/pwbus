@@ -95,7 +95,7 @@ class EngineDispatch():
                             task.getInstance().execute()
                     except:
                         EngineMonitorEvent().incrValue("pwbus_task_errors")
-                        passode=DEVELOP_MODE
+                        pass
 
             # @@@ step 3 - send message out
 
